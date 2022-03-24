@@ -1,6 +1,10 @@
 body {
   background: #95afc0;
-  padding: 2rem; 
+  padding: 3rem 2rem 2rem; 
+}
+
+h1.MuiTypography-h1 {
+  margin-bottom: 1.5rem;
 }
 
 .App {

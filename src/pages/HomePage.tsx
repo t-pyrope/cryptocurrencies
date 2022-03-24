@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
+  Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { CurrencySimple } from '../models/currency';
@@ -17,6 +17,7 @@ function HomePage() {
 
   return (
     <div>
+      <Typography variant="h1" component="h1">Cryptocurrencies</Typography>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

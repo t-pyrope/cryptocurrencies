@@ -2,9 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
+  Avatar,
   Button,
   Grid, Paper, Table, TableBody, TableContainer, Typography,
 } from '@mui/material';
+import {
+  CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis,
+} from 'recharts';
 import getCurrency from '../redux/actions/currency';
 import { RootState } from '../redux/types';
 import DetailTableRow from '../components/DetailTableRow';
@@ -31,6 +35,7 @@ function Currency() {
         && (
         <Grid container>
           <Grid item xs={5}>
+            <Avatar src={currency.image} sx={{ width: 50, height: 50 }} />
             <Typography variant="h2">{currency.name}</Typography>
             <TableContainer>
               <Table>
@@ -50,7 +55,15 @@ function Currency() {
               </Table>
             </TableContainer>
           </Grid>
-          <Grid item xs={7}>hello</Grid>
+          <Grid item xs={7}>
+            <LineChart width={700} height={500} data={currency.marketChart}>
+              <CartesianGrid strokeDasharray="3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="usd" stroke="#eb4d4b" />
+            </LineChart>
+          </Grid>
         </Grid>
         )}
       </Paper>

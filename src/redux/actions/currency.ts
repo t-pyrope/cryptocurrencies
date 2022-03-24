@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
+import { DateTime } from 'luxon';
 
-import { CurrencyExtended } from '../../models/currency';
+import { Chart, CurrencyExtended } from '../../models/currency';
 import { currencyUrl, marketChartUrl } from '../../sources/crypto';
 import { GET_CURRENCY } from '../types';
 
@@ -36,8 +37,26 @@ export interface CurrencySimple {
 const getCurrency = (id: string) => async (dispatch: Dispatch) => {
   const currencyResult = await axios.get(currencyUrl(id));
   const marketChartResult = await axios.get(marketChartUrl(id));
+
+  // [33, 33]
+  const marketChart = marketChartResult.data.prices.reduce((prev: Chart[], current: number[]) => {
+    const tempPrev = prev.slice();
+    const chart: Chart = { name: '', usd: current[1] };
+    const date = (prev.length && prev[prev.length - 1])
+      ? DateTime.fromFormat(prev[prev.length - 1].name, 'LLL dd yyyy')
+        .set({ day: DateTime.fromFormat(prev[prev.length - 1].name, 'LLL dd yyyy').day - 1 })
+      : DateTime.now();
+    const dateToName = date.toFormat('LLL dd yyyy');
+    chart.name = dateToName;
+    tempPrev.push(chart);
+    return tempPrev;
+  }, []);
+
+  console.log(marketChart);
+
   const filteredData: CurrencyExtended = {
     name: currencyResult.data.name,
+    image: currencyResult.data.image.small,
     symbol: currencyResult.data.symbol,
     genesisDate: currencyResult.data.genesis_date,
     marketRank: currencyResult.data.market_cap_rank,
@@ -49,7 +68,7 @@ const getCurrency = (id: string) => async (dispatch: Dispatch) => {
     oneHour: currencyResult.data.market_data.price_change_percentage_1h_in_currency.usd,
     twentyFourHours: currencyResult.data.market_data.price_change_percentage_24h_in_currency.usd,
     sevenDays: currencyResult.data.market_data.price_change_percentage_7d_in_currency.usd,
-    marketChart: marketChartResult.data.prices.map((i: number[]) => Math.round(i[1])),
+    marketChart,
   };
   dispatch({
     type: GET_CURRENCY,

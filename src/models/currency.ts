@@ -50,9 +50,15 @@ export interface CurrencySimple {
     sevenDays: number;
 }
 
+export interface Chart {
+    name: string,
+    usd: number,
+}
+
 export interface CurrencyExtended {
     name: string;
     symbol: string;
+    image: string;
     genesisDate: Date;
     marketRank: number;
     totalSupply: number;
@@ -63,7 +69,7 @@ export interface CurrencyExtended {
     oneHour: number;
     twentyFourHours: number;
     sevenDays: number;
-    marketChart: number[]
+    marketChart: Chart[]
 }
 
 export interface Currencies {
