@@ -1,7 +1,7 @@
 import { Avatar, TableCell, TableRow } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import getRate from '../helpers/currency';
+import { getRate } from '../helpers/currency';
 import { CurrencySimple } from '../models/currency';
 
 const currencyFormatter = require('currency-formatter');

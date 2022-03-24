@@ -12,6 +12,7 @@ import {
 import getCurrency from '../redux/actions/currency';
 import { RootState } from '../redux/types';
 import DetailTableRow from '../components/DetailTableRow';
+import { formatWithoutCents } from '../helpers/currency';
 
 function Currency() {
   const params = useParams();
@@ -19,8 +20,6 @@ function Currency() {
   const navigate = useNavigate();
 
   const { currency } = useSelector((state: RootState) => state.currency);
-
-  console.log(currency);
 
   useEffect(() => {
     const { id } = params;
@@ -40,7 +39,7 @@ function Currency() {
               <Avatar src={currency.image} sx={{ width: 50, height: 50 }} />
               <Typography variant="h2">{currency.name}</Typography>
             </div>
-            <Grid container>
+            <Grid container spacing={2}>
               <Grid item xs={4}>
                 <TableContainer>
                   <Table>
@@ -65,8 +64,8 @@ function Currency() {
                   <LineChart data={currency.marketChart}>
                     <CartesianGrid strokeDasharray="3" />
                     <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
+                    <YAxis tickFormatter={((item) => formatWithoutCents(item))} />
+                    <Tooltip formatter={(item: number) => formatWithoutCents(item)} />
                     <Line type="monotone" dataKey="usd" stroke="#eb4d4b" />
                   </LineChart>
                 </ResponsiveContainer>
