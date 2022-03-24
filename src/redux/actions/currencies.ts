@@ -5,8 +5,8 @@ import { Currency, CurrencySimple } from '../../models/currency';
 import { currencyListUrl } from '../../sources/crypto';
 import { GET_CURRENCIES } from '../types';
 
-const getCurrencies = () => async (dispatch: Dispatch) => {
-  const result = await axios.get(currencyListUrl(1));
+const getCurrencies = (page: number) => async (dispatch: Dispatch) => {
+  const result = await axios.get(currencyListUrl(page));
 
   const filteredData: CurrencySimple[] = result.data.map((item: Currency) => ({
     name: item.name,
