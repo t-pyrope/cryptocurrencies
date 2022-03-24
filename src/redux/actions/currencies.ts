@@ -3,9 +3,12 @@ import { Dispatch } from 'redux';
 
 import { Currency, CurrencySimple } from '../../models/currency';
 import { currencyListUrl } from '../../sources/crypto';
-import { GET_CURRENCIES } from '../types';
+import { CURRENCIES_LOADING, GET_CURRENCIES } from '../types';
 
 const getCurrencies = (page: number) => async (dispatch: Dispatch) => {
+  dispatch({
+    type: CURRENCIES_LOADING,
+  });
   const result = await axios.get(currencyListUrl(page));
 
   const filteredData: CurrencySimple[] = result.data.map((item: Currency) => ({

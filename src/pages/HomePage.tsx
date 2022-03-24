@@ -20,7 +20,7 @@ function HomePage() {
   return (
     <div>
       <Typography variant="h1" component="h1">Cryptocurrencies</Typography>
-      <Paper className="column">
+      <Paper className="column full-height">
         <TableContainer>
           <Table stickyHeader>
             <TableHead>

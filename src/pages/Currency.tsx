@@ -31,7 +31,7 @@ function Currency() {
       <div>
         <Button onClick={() => navigate('/')} variant="contained" color="info">Go back to list</Button>
       </div>
-      <Paper className="currency-page">
+      <Paper className="currency-page full-height">
         {currency
         && (
           <>

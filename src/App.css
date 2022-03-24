@@ -55,6 +55,10 @@ h1.MuiTypography-h1 {
   padding: 2rem;
 }
 
+.full-height {
+  min-height: 90vh;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
