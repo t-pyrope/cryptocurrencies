@@ -1,36 +1,14 @@
 import { Avatar, TableCell, TableRow } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getRate } from '../helpers/currency';
 import { CurrencySimple } from '../models/currency';
-
-const currencyFormatter = require('currency-formatter');
 
 interface DataTableRowProps {
     currency: CurrencySimple
 }
 
 function DataTableRow({ currency }: DataTableRowProps) {
-  const [currentPrice, setCurrentPrice] = useState('');
-  const [marketCap, setMarketCap] = useState('');
-  const [oneHour, setOneHour] = useState('');
-  const [twentyFourHours, setTwentyFourHours] = useState('');
-  const [sevenDays, setSevenDays] = useState('');
-
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const price = currencyFormatter.format(currency.current_price, { code: 'USD' });
-    const cap = currencyFormatter.format(currency.market_cap, { code: 'USD' });
-    const oneHourPercent = getRate(currency.current_price, currency.oneHour);
-    const twentyFourHoursPercent = getRate(currency.current_price, currency.twentyFourHours);
-    const sevenDaysPercent = getRate(currency.current_price, currency.sevenDays);
-    setCurrentPrice(price);
-    setOneHour(`${oneHourPercent}%`);
-    setTwentyFourHours(`${twentyFourHoursPercent}%`);
-    setSevenDays(`${sevenDaysPercent}%`);
-    setMarketCap(cap);
-  }, []);
 
   return (
     <TableRow onClick={() => navigate(`/${currency.id}`)} hover>
@@ -39,11 +17,11 @@ function DataTableRow({ currency }: DataTableRowProps) {
         {currency.name}
       </TableCell>
       <TableCell>{currency.symbol}</TableCell>
-      <TableCell>{currentPrice}</TableCell>
-      <TableCell>{marketCap}</TableCell>
-      <TableCell>{oneHour}</TableCell>
-      <TableCell>{twentyFourHours}</TableCell>
-      <TableCell>{sevenDays}</TableCell>
+      <TableCell>{currency.current_price}</TableCell>
+      <TableCell>{currency.market_cap}</TableCell>
+      <TableCell>{currency.oneHour}</TableCell>
+      <TableCell>{currency.twentyFourHour}</TableCell>
+      <TableCell>{currency.sevenDays}</TableCell>
     </TableRow>
   );
 }

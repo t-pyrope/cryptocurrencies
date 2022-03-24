@@ -53,7 +53,7 @@ function Currency() {
                       <DetailTableRow title="Current price" text={currency.currentPrice} />
                       <DetailTableRow title="All time high" text={currency.allTimeHight} />
                       <DetailTableRow title="1h change" text={currency.oneHour} />
-                      <DetailTableRow title="24h change" text={currency.twentyFourHours} />
+                      <DetailTableRow title="24h change" text={currency.twentyFourHour} />
                       <DetailTableRow title="7d change" text={currency.sevenDays} />
                     </TableBody>
                   </Table>

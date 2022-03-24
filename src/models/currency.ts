@@ -39,14 +39,14 @@ export interface Currency {
 }
 
 export interface CurrencySimple {
-    current_price: number;
+    current_price: string;
     id: string;
     image: string;
-    market_cap: number;
+    market_cap: string;
     name: string;
     symbol: string;
     oneHour: number;
-    twentyFourHours: number;
+    twentyFourHour: number;
     sevenDays: number;
 }
 
@@ -63,11 +63,11 @@ export interface CurrencyExtended {
     marketRank: number;
     totalSupply: number;
     circulatingSupply: number;
-    marketCap: number;
-    currentPrice: number;
-    allTimeHight: number;
+    marketCap: string;
+    currentPrice: string;
+    allTimeHight: string;
     oneHour: number;
-    twentyFourHours: number;
+    twentyFourHour: number;
     sevenDays: number;
     marketChart: Chart[]
 }
