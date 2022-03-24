@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { Currency, CurrencySimple } from '../../models/currency';
 
-import currencyListUrl from '../../sources/crypto';
+import { Currency, CurrencySimple } from '../../models/currency';
+import { currencyListUrl } from '../../sources/crypto';
 import { GET_CURRENCIES } from '../types';
 
 const getCurrencies = () => async (dispatch: Dispatch) => {
   const result = await axios.get(currencyListUrl(1));
-  console.log('result', result);
+
   const filteredData: CurrencySimple[] = result.data.map((item: Currency) => ({
     name: item.name,
     current_price: item.current_price,

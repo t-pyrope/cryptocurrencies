@@ -1,5 +1,6 @@
 import { Avatar, TableCell, TableRow } from '@mui/material';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import getRate from '../helpers/currency';
 import { CurrencySimple } from '../models/currency';
 
@@ -16,6 +17,8 @@ function DataTableRow({ currency }: DataTableRowProps) {
   const [twentyFourHours, setTwentyFourHours] = useState('');
   const [sevenDays, setSevenDays] = useState('');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const price = currencyFormatter.format(currency.current_price, { code: 'USD' });
     const cap = currencyFormatter.format(currency.market_cap, { code: 'USD' });
@@ -30,7 +33,7 @@ function DataTableRow({ currency }: DataTableRowProps) {
   }, []);
 
   return (
-    <TableRow>
+    <TableRow onClick={() => navigate(`/${currency.id}`)}>
       <TableCell component="th" scope="row" style={{ display: 'flex', gap: '2ch' }}>
         <Avatar src={currency.image} sx={{ width: 22, height: 22 }} />
         {currency.name}
