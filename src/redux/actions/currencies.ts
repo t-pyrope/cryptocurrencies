@@ -14,8 +14,6 @@ const getCurrencies = (page: number) => async (dispatch: Dispatch) => {
   });
   const result = await axios.get(currencyListUrl(page));
 
-  console.log(result.data);
-
   const filteredData: CurrencySimple[] = result.data.map((item: Currency) => ({
     name: item.name,
     current_price: currencyFormatter.format(item.current_price, { code: 'USD' }),
