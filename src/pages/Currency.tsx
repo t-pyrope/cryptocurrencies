@@ -12,6 +12,7 @@ import {
 import getCurrency from '../redux/actions/currency';
 import { RootState } from '../redux/types';
 import DetailTableRow from '../components/DetailTableRow';
+import ScrollTop from '../components/ScrollTop';
 import { formatWithoutCents } from '../helpers/currency';
 
 function Currency() {
@@ -74,6 +75,7 @@ function Currency() {
           </>
         )}
       </Paper>
+      <ScrollTop />
     </>
   );
 }
