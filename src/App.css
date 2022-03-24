@@ -1,14 +1,18 @@
 body {
-  background: #95afc0;
+  background: #d1d8e0;
   padding: 3rem 2rem 2rem; 
 }
 
 h1.MuiTypography-h1 {
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.5rem;
 }
 
 .MuiTableHead-root .MuiTableCell-root {
@@ -19,10 +23,29 @@ h1.MuiTypography-h1 {
   cursor: pointer;
 }
 
-.MuiTableBody-root .MuiTableRow-root:hover {
+/* .MuiTableBody-root .MuiTableRow-root:hover {
   background: rgb(245, 243, 243);
+} */
+
+.currency-page {
+  padding: 2rem;
 }
 
+.currency-page .MuiTableCell-root {
+  border-bottom: none;
+  padding: 0.7rem 0;
+}
+
+.currency-page th.MuiTableCell-root {
+  font-weight: 700;
+}
+
+.one-line {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
 
 @keyframes App-logo-spin {
   from {

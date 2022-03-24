@@ -19,7 +19,7 @@ function HomePage() {
     <div>
       <Typography variant="h1" component="h1">Cryptocurrencies</Typography>
       <TableContainer component={Paper}>
-        <Table>
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>

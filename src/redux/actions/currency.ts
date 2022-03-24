@@ -41,7 +41,7 @@ const getCurrency = (id: string) => async (dispatch: Dispatch) => {
   // [33, 33]
   const marketChart = marketChartResult.data.prices.reduce((prev: Chart[], current: number[]) => {
     const tempPrev = prev.slice();
-    const chart: Chart = { name: '', usd: current[1] };
+    const chart: Chart = { name: '', usd: Math.floor(current[1] * 100) / 100 };
     const date = (prev.length && prev[prev.length - 1])
       ? DateTime.fromFormat(prev[prev.length - 1].name, 'LLL dd yyyy')
         .set({ day: DateTime.fromFormat(prev[prev.length - 1].name, 'LLL dd yyyy').day - 1 })

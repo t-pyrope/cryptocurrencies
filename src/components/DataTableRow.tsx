@@ -33,7 +33,7 @@ function DataTableRow({ currency }: DataTableRowProps) {
   }, []);
 
   return (
-    <TableRow onClick={() => navigate(`/${currency.id}`)}>
+    <TableRow onClick={() => navigate(`/${currency.id}`)} hover>
       <TableCell component="th" scope="row" style={{ display: 'flex', gap: '2ch' }}>
         <Avatar src={currency.image} sx={{ width: 22, height: 22 }} />
         {currency.name}
